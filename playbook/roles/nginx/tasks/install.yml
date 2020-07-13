@@ -1,0 +1,17 @@
+---
+- name: Install Nginx
+  apt: name=nginx update_cache=yes state=latest cache_valid_time=3600
+  notify: Start Nginx
+
+- name: Create conf dir
+  file: path=/etc/nginx/conf.d state=directory
+
+# - name: Install Nginx
+#   become: yes
+#   # Python3ではyum moduleが動作しないのでyum moduleを使うときはansibleが使うPythonをpython2に向ける
+#   vars:
+#     ansible_python_interpreter: /usr/bin/python
+#   yum:
+#     name: nginx
+#     state: present
+#   when: "ansible_os_family == 'RedHat'"

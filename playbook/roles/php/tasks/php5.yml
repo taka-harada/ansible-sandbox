@@ -1,0 +1,8 @@
+---
+- name: Update apt
+  become: yes
+  apt: update_cache=yes
+
+- name: Install php5
+  become: yes
+  apt: name=php5 update_cache=yes

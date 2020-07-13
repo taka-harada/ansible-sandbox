@@ -1,0 +1,16 @@
+# 
+- name: Install common packages
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+   - mysql-server
+   - php
+   - php-mysql
+   - git
+
+  # yum:
+  #   name: "{{ packages }}"
+  # vars:
+  #   packages:
+  #     - build-utils
+  #     - vim
+  #     - wget

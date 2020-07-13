@@ -1,0 +1,4 @@
+---
+- name: nginxの起動ユーザーの追加
+  user:
+    name: nginx

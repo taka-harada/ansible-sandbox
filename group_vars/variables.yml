@@ -1,0 +1,13 @@
+---
+nginx_db_host: "127.0.0.1"
+nginx_db_user: "root"
+nginx_db_password: "databasepw"
+
+nginx_sites:
+  - name: "demo"
+    domain: "demo.com"
+    document_dir: "/var/www/html/demo"
+    redirect_www: false
+    use_org_ssl: false
+    ssl_domain: "demo.com"
+    db_name: "demo"

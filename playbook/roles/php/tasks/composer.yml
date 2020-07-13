@@ -1,0 +1,12 @@
+---
+- name: Get composer
+  become: yes
+  get_url: url=https://getcomposer.org/installer  dest=/tmp/composer-setup.php
+
+- name: Install composer
+  become: yes
+  shell: chdir=/tmp php composer-setup.php
+
+- name: Move composer.pher
+  become: yes
+  shell: mv /tmp/composer.phar /bin/composer

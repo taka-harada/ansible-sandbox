@@ -1,0 +1,35 @@
+---
+- name: Install PHP and dependancies
+  become: yes
+  apt: name={{ packages }} state=present update_cache=yes cache_valid_time=3600
+  vars:
+    packages:
+      - php7.2
+      - php-xml
+      - php-mbstring
+      - php-mysql
+      - php-fpm
+
+# - name: Install php-fpm
+#   apt: name=php-fpm update_cache=yes
+
+# - name: Add default settings for php-fpm
+#   template:
+#     src: "php.ini.j2"
+#     dest: /etc/php.ini
+
+# - name: Add php7.2 repository
+#   apt_repository:
+#     repo: 'ppa:ondrej/php'
+#   tags: php
+
+# - name: Install php7.2
+#   become: yes
+#   apt:
+#     pkg:
+#       - php7.2
+#       - php7.2-mbstring
+#       - php7.2-mysql
+#     state: present
+#     update_cache: yes
+#   tags: php

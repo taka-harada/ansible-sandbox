@@ -1,0 +1,17 @@
+---
+- include_tasks: adduser.yml
+- include_tasks: install.yml
+# - name: Install Nginx
+#   apt: name=nginx update_cache=yes state=latest cache_valid_time=3600
+
+# - name: Start Nginx
+#   systemd:
+#     name: nginx.service
+#     state: restarted
+#     daemon_reload: yes
+#     enabled: yes
+
+# - name: Create conf dir
+#   file: path=/etc/nginx/conf.d state=directory
+
+- include_tasks: vhosts.yml

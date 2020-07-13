@@ -1,0 +1,34 @@
+---
+- include_tasks: php7.yml
+- include_tasks: composer.yml
+
+# - name: Install php7-fpm
+#   become: yes
+#   apt: pkg=php5-fpm state=latest
+
+# - name: Install PHP Packages
+#   become: yes
+#   apt: pkg={{ item }} state=latest
+#   with_items: "{{php.packages}}"
+#   when: php.packages is defined
+
+# - name: Install php cli
+#   apt: name=php7.1-cli
+
+# - name: Install php
+#   apt: name=php update_cache=yes
+
+# - name: Create dir
+#   file: path=/etc/php-fpm.d state=directory
+
+# - name: Make php.ini
+#   template:
+#     src: "php.ini.j2"
+#     dest: /etc/php.ini
+#   notify: Restart php-fpm
+
+# - name: Make www.conf
+#   template:
+#     src: "www.conf.j2"
+#     dest: /etc/php-fpm.d/www.conf
+#   notify: Restart php-fpm

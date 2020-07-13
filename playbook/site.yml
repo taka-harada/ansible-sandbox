@@ -1,0 +1,8 @@
+---
+- hosts: node01 #hostsファイルに記載したホストを指定します
+  become: true #root権限でコマンドを実行
+  vars_files: #変数ファイル指定
+    - ../group_vars/variables.yml
+  roles:
+    - nginx
+    - php
