@@ -3,3 +3,8 @@
   service:
     name: php-fpm
     state: restarted
+
+- name: Restart php{{ php_version }}-fpm
+  service:
+    name: php{{ php_version }}-fpm
+    state: restarted
