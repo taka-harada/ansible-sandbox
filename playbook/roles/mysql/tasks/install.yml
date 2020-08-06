@@ -1,0 +1,7 @@
+---
+- name: Install MySql Server
+  apt:
+    name: ['mysql-server','mysql-client','python-mysqldb']
+    state: latest
+  notify: Restart MySQL
+  # apt: name=mysql-server update_cache=yes state=latest

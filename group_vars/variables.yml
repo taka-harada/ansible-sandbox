@@ -5,9 +5,18 @@ nginx_db_password: "databasepw"
 
 nginx_sites:
   - name: "demo"
-    domain: "demo.com"
+    domain: "demo.bst.co.jp"
     document_dir: "/var/www/html/demo"
+    document_root: "/var/www/html/demo/wordpress/src"
     redirect_www: false
     use_org_ssl: false
-    ssl_domain: "demo.com"
+    ssl_domain: "demo.bst.co.jp"
     db_name: "demo"
+    db_user: "demo"
+    db_password: "demo"
+
+php_version: "7.2"
+php_fastcgi_pass: "unix:/run/php/php7.2-fpm.sock"
+
+admin_db_user: "root"
+admin_db_password: "root"

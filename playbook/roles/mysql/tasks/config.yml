@@ -1,0 +1,43 @@
+---
+- name: Create root user
+  mysql_user:
+    login_user: "{{ admin_db_user }}"
+    login_password: "{{ admin_db_password }}"
+    name: "{{ admin_db_user }}"
+    password: "{{ admin_db_password }}"
+    check_implicit_admin: yes
+    state: present
+
+- name: MySQL接続時の文字コードセット
+  lineinfile:
+    path: /etc/mysql/conf.d/mysql.cnf
+    insertafter: '\[mysqld\]'
+    line: 'default-character-set=utf8mb4'
+
+- name: サーバ起動時の文字コードセット
+  lineinfile:
+    dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+    insertafter: '\[mysqld\]'
+    line: "character-set-server=utf8mb4"
+
+- name: Create Database
+  mysql_db:
+    login_user: "{{ admin_db_user }}"
+    login_password: "{{ admin_db_password }}"
+    name: '{{ item.db_name }}'
+    state: present
+    encoding: utf8mb4
+  with_items:
+    - "{{ nginx_sites }}"
+
+- name: ユーザ追加
+  mysql_user:
+    login_user: "{{ admin_db_user }}"
+    login_password: "{{ admin_db_password }}"
+    name: "{{ item.db_user }}"
+    password: "{{ item.db_password }}"
+    priv: '{{ item.db_name }}.*:ALL'
+    state: present
+  with_items:
+    - "{{ nginx_sites }}"
+  notify: Restart MySQL
