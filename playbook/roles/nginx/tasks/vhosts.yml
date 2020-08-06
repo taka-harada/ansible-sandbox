@@ -1,12 +1,6 @@
 ---
 # Vhosts
-- name: Make nginx.conf
-  template:
-    src: "nginx.conf.j2"
-    dest: /etc/nginx/nginx.conf
-  notify: Reload Nginx
-
-- name: Make nginx conf for entrypoint each sites
+- name: Make conf file for entrypoint each sites
   template:
     src: "main.conf.j2"
     dest: /etc/nginx/conf.d/{{ item.domain }}.conf
@@ -14,7 +8,12 @@
     - "{{ nginx_sites }}"
   notify: Reload Nginx
 
-- name: Create document root
+- name: Create document dir
   file: path={{ item.document_dir }} state=directory
+  with_items:
+    - "{{ nginx_sites }}"
+
+- name: Create document root
+  file: path={{ item.document_root }} state=directory
   with_items:
     - "{{ nginx_sites }}"
